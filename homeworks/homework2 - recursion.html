@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Задачи на рекурсию — сложный школьный уровень</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --code-bg: #f1f5f9;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 32px 16px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 1.8rem;
+      line-height: 1.25;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .section-title {
+      margin: 28px 0 14px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--border);
+      font-size: 1.2rem;
+      color: var(--accent);
+    }
+
+    .task {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 22px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    }
+
+    .task-header {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .task-num {
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 2px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .task-title {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    p {
+      margin: 8px 0;
+    }
+
+    ul {
+      margin: 8px 0 10px;
+      padding-left: 22px;
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      background: var(--code-bg);
+      padding: 1px 6px;
+      border-radius: 5px;
+      font-size: 0.92em;
+    }
+
+    .idea {
+      background: #f8fafc;
+      border-left: 3px solid var(--accent);
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      margin-top: 10px;
+      color: #334155;
+    }
+
+    .idea strong {
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Задачи на рекурсию</h1>
+      <p class="subtitle">Сложный уровень школьного курса (профильная информатика, ЕГЭ, начальные олимпиады)</p>
+    </header>
+
+    <h2 class="section-title">Алгоритмы и теория чисел</h2>
+
+    <article class="task">
+      <div class="task-header">
+        <span class="task-num">Задача 1</span>
+        <h3 class="task-title">Проверка числа на простоту</h3>
+      </div>
+      <p><strong>Условие:</strong> Дано натуральное число <em>N</em> (2 ≤ <em>N</em> ≤ 10<sup>9</sup>). Определите с помощью рекурсивной функции с параметром <code>d</code> (текущий делитель), является ли число простым.</p>
+      <div class="idea">
+        <strong>Идея:</strong> Начинаем проверку с <code>d = 2</code>. Если <code>d * d &gt; N</code>, делителей нет — число простое. Если <code>N % d == 0</code> — число составное. Иначе вызываем проверку для <code>d + 1</code>.
+      </div>
+    </article>
+
+    <article class="task">
+      <div class="task-header">
+        <span class="task-num">Задача 2</span>
+        <h3 class="task-title">Разложение на простые множители</h3>
+      </div>
+      <p><strong>Условие:</strong> Дано натуральное число <em>N</em> (2 ≤ <em>N</em> ≤ 10<sup>9</sup>). Выведите все его простые делители в порядке неубывания с учётом кратности (например, для 12 вывести <code>2 2 3</code>).</p>
+      <div class="idea">
+        <strong>Идея:</strong> Передавайте текущий делитель <code>d</code> (начиная с <code>2</code>). Если <em>N</em> делится на <code>d</code>, выведите <code>d</code> и вызовите функцию для <code>N / d</code> с тем же <code>d</code>. Иначе переходите к <code>d + 1</code> (учитывая условие <code>d * d &lt;= N</code>).
+      </div>
+    </article>
+
+    <h2 class="section-title">Строки и скобочные выражения</h2>
+
+    <article class="task">
+      <div class="task-header">
+        <span class="task-num">Задача 3</span>
+        <h3 class="task-title">Добавление звёздочек между символами</h3>
+      </div>
+      <p><strong>Условие:</strong> Дана строка <em>S</em> из латинских букв (длина до 1000). Сформируйте новую строку, вставив символ <code>*</code> между соседними буквами (например, <code>hello</code> → <code>h*e*l*l*o</code>).</p>
+      <div class="idea">
+        <strong>Идея:</strong> Базовый случай — строка длины 1 (возвращаем саму строку). Шаг рекурсии — берём первый символ <code>S[0]</code>, прибавляем <code>"*"</code> и результат функции от среза <code>S[1:]</code>.
+      </div>
+    </article>
+
+    <article class="task">
+      <div class="task-header">
+        <span class="task-num">Задача 4</span>
+        <h3 class="task-title">Вычисление значения арифметического выражения со скобками</h3>
+      </div>
+      <p><strong>Условие:</strong> Дана корректная запись выражения из цифр, знаков <code>+</code>, <code>-</code>, <code>*</code> и круглых скобок без пробелов, например <code>((2+3)*(5-1))</code>. Вычислите его значение с помощью рекурсивного разбора.</p>
+      <div class="idea">
+        <strong>Идея:</strong> Выражение в скобках состоит из двух подвыражений и оператора между ними. Рекурсивная функция разбирает левую часть (число или блок в скобках), считывает знак операции, разбирает правую часть и применяет оператор.
+      </div>
+    </article>
+
+    <article class="task">
+      <div class="task-header">
+        <span class="task-num">Задача 5</span>
+        <h3 class="task-title">Проверка правильной скобочной последовательности (один вид скобок)</h3>
+      </div>
+      <p><strong>Условие:</strong> Дана строка длины до 10<sup>4</sup>, состоящая только из символов <code>(</code> и <code>)</code>. Проверьте рекурсивно, является ли она правильной скобочной последовательностью.</p>
+      <div class="idea">
+        <strong>Идея:</strong> Передавайте в функцию текущий индекс <code>i</code> и счётчик открытых скобок <code>balance</code>. Если <code>balance &lt; 0</code> в любой момент — сразу <code>NO</code>. В конце строки проверяем, что <code>balance == 0</code>.
+      </div>
+    </article>
+
+    <h2 class="section-title">Рекурсивные функции с двумя и более ветвями (стиль ЕГЭ)</h2>
+
+    <article class="task">
+      <div class="task-header">
+        <span class="task-num">Задача 6</span>
+        <h3 class="task-title">Число программ калькулятора (задача 23 из ЕГЭ)</h3>
+      </div>
+      <p><strong>Условие:</strong> Исполнитель преобразует число на экране с помощью двух команд:</p>
+      <ul>
+        <li>Прибавить 1</li>
+        <li>Умножить на 2</li>
+      </ul>
+      <p>Сколько существует программ, которые преобразуют число 2 в число 20, при этом траектория вычислений содержит число 10 и не содержит число 15?</p>
+      <div class="idea">
+        <strong>Идея:</strong> Напишите функцию <code>f(curr, target)</code>: если <code>curr &gt; target</code> или <code>curr == 15</code>, возвращаем <code>0</code>; если <code>curr == target</code>, возвращаем <code>1</code>; иначе <code>f(curr + 1, target) + f(curr * 2, target)</code>. Итоговый ответ равен <code>f(2, 10) * f(10, 20)</code>.
+      </div>
+    </article>
+
+    <article class="task">
+      <div class="task-header">
+        <span class="task-num">Задача 7</span>
+        <h3 class="task-title">Функция Аккермана</h3>
+      </div>
+      <p><strong>Условие:</strong> Даны два неотрицательных целых числа <em>m</em> и <em>n</em> (0 ≤ <em>m</em> ≤ 3, 0 ≤ <em>n</em> ≤ 10). Вычислите значение функции <em>A(m, n)</em>:</p>
+      <ul>
+        <li><em>A(0, n) = n + 1</em></li>
+        <li><em>A(m, 0) = A(m - 1, 1)</em> при <em>m &gt; 0</em></li>
+        <li><em>A(m, n) = A(m - 1, A(m, n - 1))</em> при <em>m &gt; 0, n &gt; 0</em></li>
+      </ul>
+      <div class="idea">
+        <strong>Идея:</strong> Прямая реализация трёх ветвей. Задача отлично тренирует понимание того, как работает стек вызовов при вложенной рекурсии (<code>A(..., A(...))</code>).
+      </div>
+    </article>
+  </div>
+</body>
+</html>
